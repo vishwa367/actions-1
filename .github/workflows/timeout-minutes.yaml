@@ -3,6 +3,8 @@ name: Timeout minutes
 on:
   push:
 
+timeout-minutes: 1
+
 concurrency:
     group: production-group
     # cancel-in-progress: true    # Cancel the first Workflow Run
@@ -23,7 +25,6 @@ jobs:
     deploy:
         needs: docker
         runs-on: ubuntu-latest
-        # timeout-minutes: 1
         steps:
         - name: Docker Run
           run: | 
