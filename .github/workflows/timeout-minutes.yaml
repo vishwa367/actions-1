@@ -23,8 +23,9 @@ jobs:
     deploy:
         needs: docker
         runs-on: ubuntu-latest
+        # timeout-minutes: 1
         steps:
         - name: Docker Run
           run: | 
             echo docker run -d -p 8080:80 ${{ env.CONTAINER_REGISTRY }}/${{ vars.DOCKER_USERNAME }}/${{ env.IMAGE_NAME }}:v1
-            sleep 60s
+            sleep 90s
