@@ -1,4 +1,3 @@
-# https://www.youtube.com/watch?v=E2RRxcq_08E 01:11:00
 name: Generate ASCII Artwork
 
 on: push
@@ -17,7 +16,7 @@ jobs:
         name: dragon-text-file
         path: dragon.txt
   Test_Job_2:
-    needs: Build_Job_1
+    needs: Build_Job_1    # HERE...!!
     runs-on: ubuntu-latest
     steps:
     - name: Download dragon file
@@ -27,7 +26,7 @@ jobs:
     - name: Test file exists
       run: grep -i "dragon" dragon.txt
   Deploy_Job_3:
-    needs: Test_Job_2
+    needs: Test_Job_2     # HERE...!!
     runs-on: ubuntu-latest
     steps:
     - name: Download dragon file

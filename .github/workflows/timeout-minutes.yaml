@@ -5,8 +5,8 @@ on:
 
 concurrency:
     group: production-group
-    # cancel-in-progress: true    # Cancel the first Workflow Run
-    cancel-in-progress: false     # Parallel Job will be Queued
+    # cancel-in-progress: true    # Running one is Killed, new one starts
+    cancel-in-progress: false     # New one stays "Pending" until the running one finishes
 env:
     CONTAINER_REGISTRY: docker.io
     IMAGE_NAME: myubuntu
@@ -23,7 +23,7 @@ jobs:
     deploy:
         needs: docker
         runs-on: ubuntu-latest
-        timeout-minutes: 1
+        timeout-minutes: 1      # HERE...!!
         steps:
         - name: Docker Run
           run: | 
