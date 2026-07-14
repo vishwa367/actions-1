@@ -7,9 +7,20 @@ on:
 jobs:
     deploy-on-ubuntu:
         strategy:
+            fail-fast: false
+            max-parallel: 2
             matrix:
                 os: [ubuntu-latest, ubuntu-24.04, windows-latest]
                 images: [hello-world, alpine]
+                exclude:
+                - os: windows-latest
+                  images: hello-world
+                - os: windows-latest
+                  images: alpine
+                # - os: windows-latest  # This removes all jobs where os is windows-latest
+                include:
+                - os: windows-latest
+                  images: hello-world:nanoserver
         runs-on: ${{ matrix.os }}
         steps:
         - name: Echo docker details
