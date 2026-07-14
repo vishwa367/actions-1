@@ -15,7 +15,11 @@ jobs:
     deploy-on-windows:
         runs-on: windows-latest
         steps:
+        - name: Start docker daemon
+          run: |
+            setup-docker
+          shell: pwsh
         - name: Echo docker details
           run: docker info
         - name: Run Images
-          run: docker run hello-world
+          run: docker run hello-world:nanoserver
